@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Task;
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 /*
@@ -26,7 +26,7 @@ Route::get('/', function () {
 //add a new task
 Route::post('/task',function (Request $request){
     //nameフィールドを必須化&含まれる文字が255文字未満であること
-    $validator = validator::make($request->all(),[
+    $validator = Validator::make($request->all(),[
         'name' => 'required|max:255',
     ]);
     //もし、$validatorが条件を満たさなかった場合、/にリダイレクト&入力とエラーをセッションにフラッシュ
