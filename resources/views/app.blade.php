@@ -15,9 +15,28 @@
         <hr>
         
         <h2>Add new task</h2>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{$errors}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <form action="{{url('/todos')}}"method="POST">
+            @csrf
+            <input type="text" class="form-control" name="task" placeholder="Add new task">
+            <button class="btn btn-primary" type="submit">Store</button>
+        </form>
         <hr>
 
         <h2>Pending tasks</h2>
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{session('status')}}
+            </div>
+        @endif
         <ul class="list-group">
             @foreach($todos as $todo)
                 <li class="list-group-item">{{$todo->task}}</li>

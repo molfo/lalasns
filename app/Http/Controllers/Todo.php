@@ -36,7 +36,18 @@ class Todo extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validate the from
+        $request->validate([
+            'task'=>'requierd|max:200'
+        ]);
+
+        //store the date
+        DB::table('todos')->insert([
+            'task'=>$repuest->task
+        ]);
+
+        //redirect
+        return redirect('/')->with('status','Task added!');
     }
 
     /**
