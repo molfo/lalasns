@@ -38,12 +38,12 @@ class Todo extends Controller
     {
         //validate the from
         $request->validate([
-            'task'=>'requierd|max:200'
+            'task'=>'required|max:200'
         ]);
 
         //store the date
         DB::table('todos')->insert([
-            'task'=>$repuest->task
+            'task'=>$request->task
         ]);
 
         //redirect
