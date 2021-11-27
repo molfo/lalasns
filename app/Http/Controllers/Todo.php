@@ -100,6 +100,8 @@ class Todo extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('todos')->where('id',$id)->delete();
+
+        return redirect('/')->with('status','Task removed!');
     }
 }

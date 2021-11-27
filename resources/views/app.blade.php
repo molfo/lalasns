@@ -44,6 +44,11 @@
                     <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{$loop->index}}" aria-expanded="false">
                         Edit
                     </button>
+                    <form action="{{url('todos/'.$todo->id)}}" method="POST" style="display: inline-block;">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </form>
 
                     <div class="collapse mt-2" id="collapse-{{$loop->index}}">
                         <div class="card card-body">
@@ -56,7 +61,6 @@
                         </div>
                     </div>
                 </li>
-                
             @endforeach
         <hr>
 
