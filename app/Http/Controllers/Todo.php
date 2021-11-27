@@ -81,7 +81,15 @@ class Todo extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'task'=>'required|max:200'
+        ]);
+
+        DB::table('todos')->where('id',$id)->update([
+            'task'=>$request->task
+        ]);
+
+        return redirect('/')->with('status','Task updated!');
     }
 
     /**

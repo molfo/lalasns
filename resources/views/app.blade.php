@@ -39,7 +39,24 @@
         @endif
         <ul class="list-group">
             @foreach($todos as $todo)
-                <li class="list-group-item">{{$todo->task}}</li>
+                <li class="list-gourp-item">
+                    {{$todo->task}}
+                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{$loop->index}}" aria-expanded="false">
+                        Edit
+                    </button>
+
+                    <div class="collapse mt-2" id="collapse-{{$loop->index}}">
+                        <div class="card card-body">
+                            <form action="{{url('todos/'.$todo->id)}}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <input type="text" name="task" value="{{$todo->task}}">
+                                <button class="btn btn-secondary" type="submit">Update</button>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+                
             @endforeach
         <hr>
 
